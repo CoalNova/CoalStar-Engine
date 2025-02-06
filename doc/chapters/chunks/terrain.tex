@@ -1,0 +1,29 @@
+Terrain is the name for mesh that covers or fills a chunk. Terrain mesh in the engine is divided into two catagories: Homogenous and Volumetric. These, both, may be set to be "inverted", to alter chunk mesh facing.
+
+\subsection{Homogenous Terrain}
+
+Homogenous terrain mesh extends across the chunk, based on the heights listed. Any height of 0 is an indication to not draw the mesh at that location. It is stored internally as a set of 16-bit values, multiplied by one-tenth of a unit(meter). Each are added to a flat 8-bit value which is multiplied by 1024 for the base height. Heights are stored at every other unit to conserve 
+
+\subsection{Volumetric Terrain}
+
+Volumetric terrain refers to a style of terrain mesh with an upper and lower bounds. It uses a singular plane of paired 16-bit values. The first value indicates the vertical center of mass for the terrain. The second value indicates haw far the upper and lower heights are at that point. 
+
+\subsection{Get Height Function}
+
+The conditions to check height are based on three conditions:
+\begin{itemize}
+    \item If position is arbitrary (not whole unit)
+    \item If position is whole but either axis is odd
+    \item If position is whole and axis are both even
+\end{itemize}
+
+\subsubsection{Arbitrary Position}
+    Firstly, check if a volumetric height table exists for the current dimension, otherwise treat Z as zero(0). If volumetric heights do exist, count for volumetric entries at each of the corner vertices. Counting down, if all entries of the  if only one does not exist, then a simple calc of the x and y coords will need to be performed to see if they overlap with height entry.
+
+    The height is derived as a ray-plane interception based on where the position defines which plane it uses.
+\subsubsection{Odd Position}
+
+    If the whole position is odd on both x and y positions, it averages the even cornering heights. If only the x or y axis is odd, then average the associated heights when are uniformly even.
+
+\subsubsection{Even Position}
+    The height of a uniformly even position takes the height entry from the chunk's heights, or from a volumetric height value if the z position is within the volume.

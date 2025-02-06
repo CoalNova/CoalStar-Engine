@@ -1,0 +1,10 @@
+The script thread will handle script processing, and execute scripts through a series of interfaces.
+
+The types of these interfaces, in order of execution frequency:
+
+\begin{itemize}
+    \item Update(): will execute every frame, or as often as it can.
+    \item OtherUpdate(): will execute every other frame, balanced between two pools.
+    \item BalancedUpdate(): will execute across a pool which maintains a square layout, with each next column executing per frame.
+    \item SequentialUpdate(): will execute as a member of a linear series, with one execution happening per frame. 
+\end{itemize}

@@ -1,0 +1,22 @@
+Manifests are associated tables for resource data resolution. Several manifests are used, each meaning to tie data to an easily located source. The resource manifest, as name would suggest, ties resource IDs to locations. These locations are the signature of the file and/or archive where it may be found. The signatures are logged in the Signature Manifest, easily seen is the creativity on display here.
+
+Signature and Resource Manifests are both built during the game initialization sequence. Resolution will also be leveraged to verify integrity and avoid malfeasant connections during initialization. 
+
+
+\subsection{Resource Manifest}
+Resource Manifests are type-specific, as resource ID collisions may occur across resource types. The IDs index in the manifest are hashed, to allow for rapid lookup. When overwriting resource data, the existing signature is pushed onto the provenance stack, then the new signature and offsets are written.
+The resource manifest table is split into four columns:
+
+\begin{itemize}
+    \item Resource ID
+    \item Signature
+    \item Offset start/end
+    \item Optional Provenance Stack
+\end{itemize}
+
+\subsection{Signature Manifest}
+The Signature Manifest is a master document to combine all signatures to file locations. This will have three entries, the Signature, the path, and the offset. The path may be internal or an external file, access must be handled via a likewise interface. The Signature is a u32, incremented for each archive. This way archives may act as overwrite/override alterations, even within the same data structure.
+
+
+
+

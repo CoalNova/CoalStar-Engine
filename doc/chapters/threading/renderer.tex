@@ -1,0 +1,3 @@
+The render thread is responsible for exclusive communication to the graphics API and gpu. Each operation sent to the renderer is submitted through a queue that must be completed before the render operation is complete. Logically no incomplete item should be drawn, as the submission to being drawn is the last operation. Thus, the renderer should have free reign to operate at its discretion.
+
+This is pending further experimentation on positional updating matching framerate.

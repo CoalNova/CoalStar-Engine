@@ -1,0 +1,129 @@
+\documentclass{report}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{parskip}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{hyperref}
+
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+\geometry{
+letterpaper,
+total={170mm,240mm},
+left=20mm,
+top=20mm,
+}
+
+
+\begin{document}
+\setlength{\parskip}{8pt}
+\setlength{\parindent}{12pt}
+
+
+\title{
+    CoalStar Engine Master Document
+    \linebreak 
+}
+\author{CoalNova}
+\date{\today}
+
+\title{CoalStar Engine Master Document}
+\author{Chris Godfrey/CoalNova}
+\date{\today}
+\maketitle
+
+\include{chapters/overview.tex}
+
+\tableofcontents
+
+\chapter{Worldspace}
+\input{chapters/worldspace/overview.tex}
+\section{Traversal}
+\input{chapters/worldspace/traversal.tex}
+\section{Generation}
+\input{chapters/worldspace/generation.tex}
+\section{Urban/Density}
+\input{chapters/worldspace/urbandensity.tex}
+
+\chapter{Chunks}
+\input{chapters/chunks/overview.tex}
+\section{Storage}
+\input{chapters/chunks/storage.tex}
+\section{Terrain}
+\input{chapters/chunks/terrain.tex}
+\section{Zones}
+\input{chapters/chunks/zone.tex}
+\section{Interiors}
+\input{chapters/chunks/interiors.tex}
+\section{Generation}
+\input{chapters/chunks/generation.tex}
+
+\chapter{Resources}
+\input{chapters/resources/overview.tex}
+\section{Resource ID}
+\input{chapters/resources/resourceid.tex}
+\section{Collection}
+\input{chapters/resources/collection.tex}
+\section{Thread Responsibilities}
+\input{chapters/resources/thread.tex}
+
+\chapter{Props}
+\input{chapters/props/overview}
+\section{Interactions}
+\input{chapters/props/interactions.tex}
+
+\chapter{FileIO}
+\input{chapters/fileio/overview.tex}
+\section{File Metablock}
+\input{chapters/fileio/metablock.tex}
+\section{File Manifests}
+\input{chapters/fileio/manifest.tex}
+\section{Archive}
+\input{chapters/fileio/archive.tex}
+\section{Chunk File}
+\input{chapters/fileio/chunk.tex}
+\section{Asset Generation Data}
+\input{chapters/fileio/assetgenerationdata.tex}
+
+\chapter{Audios}
+\input{chapters/audios/overview.tex}
+
+\chapter{Actors}
+\input{chapters/actors/overview.tex}
+\section{Movement}
+\input{chapters/actors/movement.tex}
+\section{Attachments}
+\input{chapters/actors/attachments.tex}
+
+\chapter{Player}
+\input{chapters/player/overview.tex}
+\section{Inputs}
+\input{chapters/player/inputs.tex}
+\section{Stats Traits and Figures}
+\input{chapters/player/statsfigures.tex}
+
+\chapter{Interactions}
+\input{chapters/interactions/overview.tex}
+
+\chapter{Threading}
+\input{chapters/threading/overview.tex}
+\section{Main Thread}
+\input{chapters/threading/mainthread.tex}
+\section{Resource Thread}
+\input{chapters/threading/resource.tex}
+\section{Render Thread}
+\input{chapters/threading/renderer.tex}
+\section{Scripting Thread}
+\input{chapters/threading/script.tex}
+\section{Simulation}
+\input{chapters/threading/simulation.tex}
+
+
+\end{document}

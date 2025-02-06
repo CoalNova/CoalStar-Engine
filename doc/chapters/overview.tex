@@ -1,0 +1,17 @@
+
+The CoalStar Engine is an engine runtime designed for the facilitation of "Open World" games. It is design to run on older and limited hardware, utilizing modern languages and techniques to reduce impact on processing and memory, while not sacrificing scale. It is design to allow free player movement, with rapid traversal unhindered by loading/unloading requirements. World generation and rendering will be done through inter/intradimensional projections of space.
+
+These dimensions are thrice axial, with the lateral axis being associated with "interdimensional" space and vertical axis being dedicated to "intradimensional" space. This allows for a worldspace potentially many times greater than earth while not degrading visual and gameplay quality through floating point precision loss.
+
+Actors, NPCs, or Non-Player Characters will perform and operate off of soft simulations to emulate a life-like behaviors, both when engaging with the world, each other, and with the player. Actors, feral and sapient, will engage the player and other actors using past experiences, existing relationships, and even the perception of threat.
+
+An ownership system will dictate immediate engagements and relationships, as well as aiding in simulating behaviors between groups. Ownership is a tri-directional linkage of actor, land, and organization.
+
+To enable a greater sense of immersive simulation, the world itself will have certain features explicitly handled at the engine level. These being weather, tide, and season. The necessity of engine level operations for this behavior is to unify the worldspace, reduce resource impact otherwise needed for dynamic scripting events, and offer those scripts a centralized API to attach to at whim. Further simulations or world-space effects are pending, should they be deemed necessary.
+
+Though few, universal constants exist within the engine. One example of this is unit measurements, with one(1, 1.0) unit of length being a meter, and unit of weight being a kilogram. Further SI may be standardized as project progresses and needs arise.
+
+The CoalStar Engine is written in Zig. It presently utilizes the \href{https://www.libsdl.org/}{SDL library}, the \href{https://github.com/jrouwe/JoltPhysics}{Jolt Physics library}, and \href{https://www.opengl.org/}{OpenGL} through the 
+\href{https://github.com/zig-gamedev/zig-gamedev}{Zig-Gamedev} utility.
+
+CoalStar is held under the MIT License.

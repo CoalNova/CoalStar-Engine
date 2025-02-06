@@ -1,0 +1,3 @@
+The resource ID is the handle used to identify a resource within the engine, unique to each game. If the resource is overwritten in the archives, then it is by the resource ID. Resource ID's are comprised of two parts: the UID, and the type enum. The type enum simply tells the engine what the resource is, the uid is linked to where the consequent data is stored.
+
+These two are compressed within a packed struct, as an 8-bit enum and 24-bit integer UID. The 24-bits allows for over 4 million unique resources of each type, sufficient for any game. All addressing of the resource's ID is through a resource ID.

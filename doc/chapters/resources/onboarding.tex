@@ -1,0 +1,15 @@
+The onboarding of resources into the engine requires a series of operations to ensure that things are processed appropriately.
+
+Firstly, All resources are converted to an engine compliant format. All resources are labeled and referenced within an active manifest. The manifest incrementally addresses all new resources, and the converted data is compiled from loose files once packing begins. Otherwise the manifest keeps the loose data in a linked folder.
+
+The resource is added to the current worldspace immediately to verify correctness, and edit any properties and linked resources. Any loaded resource will have subsequent data attached using default resources.
+
+The process is broken down into discrete steps:
+
+\begin{itemize}
+    \item Take provided location on disk and load file into byte-array
+    \item Convert byte array of source data into engine compliant data layout
+    \item Allocate converted data into an archive and associate link into manifest
+\end{itemize}
+
+Once in, the manifested resource may be then attributed to a prop, or other entity. 

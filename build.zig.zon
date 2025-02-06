@@ -1,0 +1,29 @@
+.{
+    .name = "coalstar",
+
+    .version = "0.0.0",
+    .dependencies = .{
+        .zaudio = .{ .path = "libs/zaudio" },
+        .zopengl = .{ .path = "libs/zopengl" },
+        .zmath = .{ .path = "libs/zmath" },
+        .zphysics = .{ .path = "libs/zphysics" },
+        .zsdl = .{ .path = "libs/zsdl" },
+        .system_sdk = .{ .path = "libs/system-sdk" },
+        .@"sdl2-prebuilt" = .{
+            .url = "https://github.com/zig-gamedev/SDL2-prebuilt/archive/49b2267a0fedee9d594733617255dd979da51813.tar.gz",
+            .hash = "1220930ce0d568bd606112d38c3f16a38841a5fd9de5c224f627cd953e7febb90bfa",
+        },
+        .ziglua = .{
+            .url = "https://github.com/natecraddock/ziglua/archive/refs/tags/0.3.0.tar.gz",
+            .hash = "122069f4b75c946c705c0ed3218f52e0917ca361f55cebf3fb1c66a431a88ccc87b3",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        // For example...
+        //"LICENSE",
+        //"README.md",
+    },
+}

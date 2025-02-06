@@ -1,2 +1,12 @@
 .zig-cache/
 zig-out/
+libs/
+assets/
+*.aux
+*.pdf
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.gz
+*.toc

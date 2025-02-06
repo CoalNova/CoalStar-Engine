@@ -1,0 +1,10 @@
+Metablock refers to the header utilized by files, archives, and data resources. It has differing components and lengths for each type of element that it precludes, but will always have a static boilerplate, a signature, and a process version. The process version is an indicator for how the following data should be handled, to future-proof any changes moving forward.
+
+\subsection{File Header}
+File headers begin with the string "Coalstar" and a two byte process version. The signature is an unchanging 512bit hash for the game it is meant for. It matches the has in the game config, and all other files used for that game. This is to prevent data mangling by files being accidentally overwritten.
+
+\subsection{Archive Header}
+Archives headers have a dual byte \begin{verbatim} 0xC5A4 \end{verbatim}(CSAR), a two byte process version, and a 32bit signature meant as a birth certificate. The signature is used as handle for reference lookups, as well as for tracking resource provenance.
+
+\subsection{Resource Header}
+Resources headers contain a single byte dual byte \begin{verbatim} 0xC543 \end{verbatim}(CSRE), a two byte process version, a 32bit signature to match any archive, and a two byte resource type.

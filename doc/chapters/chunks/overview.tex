@@ -1,0 +1,3 @@
+Chunks are the name associated with a defined object which is saved and loaded during gameplay. These contain all relevant spacial data for objects within: props, NPCs, scripts, overrides, zones, all are saved per chunk. A chunk is also bound to a dimensional offset, with intradimensional features being contained within. 
+
+To save storage space, a majority of inconsequential props will be generated using deterministic generation. An override table will be applied to adjust/disable/swap those props during generation. This will allow for more rapid production and lower storage footprint, at the cost of a meager increase in processing time during chunk loading.

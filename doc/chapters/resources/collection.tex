@@ -1,0 +1,5 @@
+The resource collection is the interface that all collections should utilize to handle and maintain resources. The purpose of the singular collection is to reduce risk from overlapping usage and redundant code pieces.
+
+The interface exposes a certain set of functions intended for use: init(), deinit(), fetch() and release(). These are how the engine should otherwise handle acquisition of resources, to prevent confusion in process. Internally, the collection itself will handle the creation and destruction of each resource item. For elements such as meshes and textures, this requires explicit handoffs to another thread to complete the workload, and may require a thread-safe DMZ for data requests. 
+
+To aid in speed and accuracy, the resource ID is stored in a hashmap to resolve lookups if the index is not, or cannot be relevantly located. Otherwise, the index to a given resource is handled, in place of a pointer. This will improve safety over direct pointer handling, will maintaining better performance than accessing elements by a hashmap.

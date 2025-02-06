@@ -1,0 +1,54 @@
+Asset Generation Data -or AGD- is a singular metadata block containing all relevant metadata for generating any given asset. An Asset is defined as a spawnable worldspace entity, such as: Prop, Actor, Force, Trigger, and so on. The AGD exists in two forms, packed and unpacked. Packed is used primarily for storage, and expands based on derived values from where it is located. 
+
+\subsection{Packed AGD}
+
+A packed AGD is two u64s, or 16 bytes in size. The parent chunk and position are based off the chunk that houses the record and an iterated list. It has the following bit layout:
+
+\begin{tabular}{|l|c|r|}  
+    \hline
+    \textbf{item data} & \textbf{u64} & \\
+    \hline
+    \textbf{Name} & \textbf{Bitlength} & \textbf{Description}\\ 
+    process  & <1>     & 0 = packed OGD, 1 = Different process\\
+    enabled  & <1>     & 0 = disabled, 1 = enabled\\
+    static   & <1>     & 0 = dynamic , 1 = static\\
+    type     & <3>     & prop, actor, emitter, field, force, override\\
+    type spec  & <58>&Dependant on type\\
+     & <32>&prop ID      \\
+     & <8> &prop state   \\
+    &  <18>&prop script  \\
+    \hline
+    \hline
+    \textbf{euclid data} & \textbf{u64}&\\
+    \hline
+    \textbf{Name} & \textbf{Bitlength} & \textbf{Description}\\ 
+    pos x & <7>  & val * (1 / 127) = 0 .. 1.0\\
+    pos y & <7>  & val * (1 / 127) = 0 .. 1.0\\
+    pos z & <17> & val * (1 / 127) - 516 = -516 .. 516\\
+    sca x & <4>  & val * 0.2 = 0 .. 3.0\\
+    sca y & <4>  & val * 0.2 = 0 .. 3.0\\
+    sca z & <4>  & val * 0.2 = 0 .. 3.0\\
+    rot x & <7>  & val * (2 / 127) 0 .. 2 Radians PI\\
+    rot y & <7>  & val * (2 / 127) 0 .. 2 Radians PI\\
+    rot z & <7>  & val * (2 / 127) 0 .. 2 Radians PI\\
+    \hline
+\end{tabular}
+
+\subsection{Unpacked AGD}
+
+The unpacked AGD contains larger data, and includes all data necessary to produce an asset.
+
+\begin{tabular}{|l|l|r|}
+    \hline
+    \textbf{Name} & \textbf{Type} & \textbf{Default Value}\\
+    \hline
+    enabled & bool & true\\
+    static & bool & true\\
+    gentype & GenType(u8) & .unused\\
+    gendata & u64 & 0 \\
+    chunk index & @Vector(2, u32) & .{ 0, 0 }\\
+    uid & u64 & 0\\
+
+    euclid & euc.Euclid & .{}\\
+    \hline
+\end{tabular}

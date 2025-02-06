@@ -1,0 +1,44 @@
+The chunk file contains serialized info for the chunks. The data should be height data, zone list, ogd list, override list, inhabited zone, inhabited override.
+
+\subsection{Header}
+The metablock custom data is 4 bytes for x axis index, 4 for y.
+
+\subsection{Chunk Depth}
+    Chunks hold onto data related to intradimensionality. For this, a u16 denotes the dimensional layers within the chunk. Each layer will be listed subsequently by a u8 mask to denote what entries exist within that layer.
+    
+    \begin{itemize}
+        \item height data     0000 0001
+        \item volume data     0000 0010
+        \item zone data       0000 1000
+        \item AGD list        0010 0000
+        \item override tables 1000 0000
+    \end{itemize}
+
+\subsection{Chunk Archive}
+
+    Each record is prefaced with a u16 for current dimensional depth layer, the bitmask value associated to the record, and a u32 for the record length. These values repeat for error checking purposes to prevent data mangling/corruption on malformed files.
+
+\subsection{Height Data}
+    Height data is the primary mesh data for generating terrain. It contains a flag to indicate whether the terrain is upward or downward facing,
+    Height data is represented as a unsigned 16-bit integer, every two units(meters). It is multiplied by 0.1 for granularity, and added to a height offset. The offset is an unsigned 8-bit integer, multiplied by 1024.0. The storage for height data is as follows:
+
+\begin{itemize}
+    \item start with last height at 0, starting height is expected above that
+    \item if current height is less than 10.0 +- last height save current height as u8. (delta - 100)
+    \item else if it is greater than, save the whole u16 with leading with max u8 (255)
+    \item set current height as last height and continue
+\end{itemize}
+
+\subsection{Volumetric Data}
+
+Volumetric data is a pair of u16s, separated out by a pai value of number of skips before next volume entry, and for how many entries follow, at which point it repeats another pair until the chunk is complete. 
+
+\subsection{Zone Data}
+    Zones are stored in a linear fashion with a value pair for integral zone type and number of steps to next zone. The zone type is a u32, and the step count is a u16. Steps are odd counted, iterating over every second unit.
+
+\subsection{Override Table}
+    Override Tables are a delta applied to the entries in a chunk as deltas to heights, AGDs, zones, time, and other necessary data. Override tables cannot swap the index of the chunk. Override tables are processed linearly, overriding prior entries.
+    
+    AGD overrides have an unpacked AGD with the AID (Asset IDentification number) to override existing elements.
+
+
