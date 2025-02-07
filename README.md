@@ -163,3 +163,9 @@ The basic themes are:
 - An attempt at a CRPG with fewer layers of abstraction to the player
 
 The game is not intended as a graphically demanding experience, instead opting to focus on grander scale instead of minute details. Much of the details surrounding the game are work in progress and subject to wild and varied changes on a whim. More information will be released when finalized.
+
+# Building
+
+Currently running the engine is difficult, as it relies on local files for debugging purposes during runtime. However, the engine makes clear what is missing. Building requires placing the appropriate Zig-Gamedev libraries into the projects root under `./libs`.
+
+Everything _should_ compile under Zig version 0.13.0. Work will commence in migrating to 0.14.0 once it is released and dependencies match.
